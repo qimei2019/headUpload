@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>头像上传</title>
+  <link rel="shortcut icon" href="logo.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./src/css/index.css">
+  <link rel="stylesheet" href="./src/bootstrap/css/bootstrap.min.css">
+  <script>
+    window.global={
+      api:'https://www.enn.cn/'
+    }
+  </script>
+</head>
+
+<body>
+    <input type="file" id="imgUpload" accept="image/jpg, image/jpeg" >
+    <div class="msg"></div>
+    <div class="wrap">
+        <h3>头像上传</h3>
+        <div class="content">
+          <div class="conLeft">
+              <div class="imgShow">
+                   <img src="" id="imgSel" alt=""> 
+                   <button class="see">点击上传预览</button>
+              </div>
+              <div class="upload">
+                <div class='txt'>
+                  <p><span class="n1">姓名</span><span class="n2" id='name'></span></p>
+                  <p><span class="n1">编号</span><span class="n2" id="id"></span></p>
+                </div>
+                <button class="btn btn-primary okUpload" >确认上传</button>
+              </div>
+          </div>
+        </div>
+    </div>
+</body>
+<script src="./src/js/jquery.min.js"></script>
+<script src="./src/js/index.js"></script>
+<script src='./src/js/md5.js'></script>
+</html>
