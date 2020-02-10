@@ -89,6 +89,7 @@ button:focus{
     outline: none!important;
 }
 .content .conLeft{
+    text-align: center;
     box-sizing: border-box;
     z-index: 10;
 }
@@ -108,10 +109,12 @@ button:focus{
    background-color: #555;
 }
 .imgShow{
+    display: inline-block;
     position: relative;
     width: 80%;
     margin: 40px auto;
     height:270px;
+    color: #333;
     border-radius: 20px;
     border: 4px dotted #94ceca;
     text-align: center;
@@ -213,6 +216,7 @@ button:focus{
        height: 200px;
     }
     .content .conLeft{
+        text-align: center;
         top: 60px;
         height: calc(100% - 60px);
     }

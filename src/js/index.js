@@ -2,14 +2,14 @@
 /*
     @获取token参数获取https://cloud.baidu.com/ 百度智能云创建人工智能应用获取
 */
-(function(){
-    let msg = document.getElementsByClassName('msg')[0],
-        api = window.global.api,obj={};
+;(function(){
+    let msg = document.getElementsByClassName('msg')[0];
+    let api = window.global.api,obj={};
     init();
     function init(){
         let href = decodeURI(window.location.href),
             hash = href.split('?');
-            if(!hash[0]){
+            if(!hash[1]){
                 msgFun('人员不存在');
                 return;
             }
@@ -36,7 +36,6 @@
         $('#imgUpload').change(function(el){
             let file = el.target;
             var render = new FileReader();
-           
             render.onload=function(e){
                 console.log(e)
                 $('.see').hide();
@@ -55,6 +54,7 @@
          }
          if(obj.id){
             if(hex_md5(obj.id+'')!==obj.ciphertext){
+                console.log(hex_md5(obj.id+''))
                 msgFun('人员编号错误');
                 return;
             }
@@ -68,19 +68,21 @@
         }
         $.ajax({
             method:'post',
-            url:api+'UploadPhoto',
-            Header:{
-                "Content-Type":"application/x-www-form-urlencoded"
+            url:api+'uploadPhoto',
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
             },
-            data:{
+            data:JSON.stringify({
                 ciphertext:obj.ciphertext,
                 id:obj.id,
                 photo:window.base64
-            },
+            }),
             success(data){
-                if(data.state==200){
+                if(data.code==200){
                     $('#imgSel').hide().attr('src','')
                     $('.see').show();
+                    $('#imgUpload').val('');
+                    window.base64='';
                     msgFun('上传成功',1)
                 }else{
                     msgFun(data.msg)
