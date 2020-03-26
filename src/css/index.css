@@ -1,12 +1,15 @@
-html {
+
+
+*{
+    padding:0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body,html {
+    font: 12px arial;
     overflow-y: auto
 }
-
-body {
-    font: 12px arial;
-    
-}
-
 body,
 p,
 form,
@@ -48,9 +51,8 @@ html,body{
     margin: 0;
     width: 100%;
     height: 100%;
-    background: url(../image/bj.png) no-repeat;
+    /* background: url(../image/bj.png) no-repeat; */
     background-size: 100% 100%;
-    overflow: hidden;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
     vertical-align: middle!important;
@@ -59,9 +61,17 @@ html,body{
     width:80%;
     margin: 50px auto;
     background: rgba(255,255,255,0.95);
-    box-shadow: 0 0 2px #999;
     border-radius: 5px;
-    overflow: hidden;
+}
+.intro{
+    color: #666;
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.intro p{
+    text-align: justify;
+    margin-bottom: 6px;
 }
 .wrap h3{
     font-weight: 800;
@@ -73,7 +83,6 @@ html,body{
     width: 100%; 
     height: 80px;
     line-height: 80px;
-    border-bottom: 1px solid #ddd;
     z-index: 99;
     background: #fff;
 }
@@ -115,27 +124,46 @@ button:focus{
     margin: 40px auto;
     height:270px;
     color: #333;
-    border-radius: 20px;
-    border: 4px dotted #94ceca;
     text-align: center;
-    background: #ddd;
+    background: #F5F3F4;
     cursor: pointer;
 }
+.okSHow{
+    margin: 40px auto;
+    display: none;
+    text-align: center;
+    height: 270px;
+    font-size: 20px;
+    color: seagreen;
+}
+.okSHow img{
+    width: 180px;
+    height: 180px;
+    padding: 5px;
+    background: #F5F3F4;
+    border-radius: 50%;
+    margin: 10px 0;
+}
 .imgShow .see{
+    background: url(../image/header.png) no-repeat;
     position: absolute;
     width: 100%;
     height: 100%;
     margin: 0;
     top: 0;
     left: 0;
-    background: none;
+    background-size: 120px 130px;
+    background-position:center;
     border: none;
     text-align: center;
     font-size: 26px;
     line-height:270px;
 }
+
 .okUpload{
-    width: 80%;
+    border: none!important;
+    background: #3598FE!important;
+    width: 90%;
     height: 60px;
     line-height: 60px;
     margin-top: 20px;
@@ -199,10 +227,149 @@ button:focus{
     top: 40px;
     transition: all 0.2s linear;
 }
+/* load动画 */
+.spinner-box {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.3);
+    justify-content: center;
+    align-items: center;
+}
+/* X-ROTATING BOXES */
+
+.configure-border-1 {
+    width: 100px;
+    height: 100px;
+    padding: 3px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
+  }
+  
+@keyframes configure-clockwise {
+    0% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+@keyframes configure-xclockwise {
+    0% {
+      transform: rotate(45deg);
+    }
+    25% {
+      transform: rotate(-45deg);
+    }
+    50% {
+      transform: rotate(-135deg);
+    }
+    75% {
+      transform: rotate(-225deg);
+    }
+    100% {
+      transform: rotate(-315deg);
+    }
+  }
+  .configure-border-2 {
+    width: 100px;
+    height: 100px;
+    padding: 3px;
+    left: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    transform: rotate(45deg);
+    animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
+  }
+  
+  .configure-core {
+    width: 100%;
+    height: 100%;
+    background-color: #37474f;
+  }
+
+  /*底部菜单  */
+  .mode{
+      display: none;
+      top: 0;
+      left: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      z-index: 1000;
+  }
+  .mode .list_btn{
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background: #efefef;
+      animation: moveBott 0.2s ease-in;
+  }
+  @keyframes moveBott{
+      0%{
+        bottom:-200px
+      }
+      100%{
+          bottom:0
+      }
+  }
+  .list_btn .pzUpload{
+      display: none;
+  }
+  .list_btn .cancel{
+      margin-top: 10px;
+  }
+  button:active,button:focus{
+      outline: none;
+     
+  }
+  .mode .list_btn button:active{
+    background: #ddd;
+  }
+  .mode .list_btn button{
+      border: none;
+      height: 50px;
+      font-size: 16px;
+      background: #fff;
+      width: 100%;
+      color: #333;
+      border-bottom: 0.5px solid #dddd;
+      border-top: 0.5px solid #dddd;
+  }
 @media screen and (max-width:768px) {
     html,body{
-        background: url(../image/bj_768.png) no-repeat;
+        /* background: url(../image/bj_768.png) no-repeat; */
         background-size: cover;
+    }
+    .intro{
+        width: 100%;
+        font-size: 14px;
+    }
+    .wrap{
+        width:100%;
+        padding: 10px;
+        margin: 0;
     }
     .wrap h3{
         font-size: 16px;
@@ -211,14 +378,25 @@ button:focus{
     }
     .imgShow{
         box-sizing: border-box;
-        margin: 20px auto;
+        margin: 10px auto;
         border-radius: 5px;
-       height: 200px;
+        height: 280px;
+        width: 60%;
+    }
+    .okSHow{
+        height: 200px;
+    }
+    .okSHow IMG{
+        width: 160px;
+        height: 160px;
     }
     .content .conLeft{
         text-align: center;
         top: 60px;
         height: calc(100% - 60px);
+    }
+    .list_btn .pzUpload{
+        display: block;
     }
     .txt{
         width: 100%;
@@ -229,16 +407,28 @@ button:focus{
     }
     .okUpload{
         margin-top: 10px;
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 40px;
         width: 100%;
-        font-size: 18px!important;
+        font-size: 16px!important;
+    }
+    .okSHow{
+        margin: 40px auto;
     }
     .imgShow img{
-        max-height: 180px;
+        max-height: 240px;
     }
     .imgShow .see{
         font-size: 16px;
-        line-height: 200px;
+        line-height: 280px;
+        background-size: 75px 80px;
+    }
+    .configure-border-1{
+        width: 60px;
+        height: 60px;
+    }
+    .configure-border-2{
+        width: 60px;
+        height: 60px;
     }
 }

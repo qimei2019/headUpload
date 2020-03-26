@@ -10,35 +10,61 @@
   <link rel="stylesheet" href="./src/bootstrap/css/bootstrap.min.css">
   <script>
     window.global={
-      // api:'https://www.enn.cn/'
-      api:'http://120.78.210.25:8080/EPort/'
+      //api:'http://10.37.147.142:8080/EPort/'
+      api:'http://10.37.147.142:8080/EPort/'
     }
   </script>
 </head>
 
 <body>
-    <input type="file" id="imgUpload" accept="image/jpg, image/jpeg" >
+    <input type="file" id="imgUpload" accept="image/*" capture="">
     <div class="msg"></div>
     <div class="wrap">
-        <h3>头像上传</h3>
+        <div class="intro">
+          <p>照片要求:1寸免冠正装照,不大于1M分辨率不低于300像素的JPG格式。</p>
+          <p>背景底色要求:</p>
+          <p>蓝色背景:总部、能源板块、新智、北部湾、新苑阳光、物业、新地</p>
+          <p>白色背景:新绎健康、新绎地产(不含新苑阳光、物业)、新绎文化、e城e家</p>
+        </div>
         <div class="content">
           <div class="conLeft">
               <a class="imgShow">
                    <img src="" id="imgSel" alt=""> 
-                   <button class="see">点击上传预览</button>
+                   <button class="see"></button>
               </a>
+              <div class="okSHow">
+                  <img class="uploadImg" src="" alt="">
+                  <p>上传成功</p>
+              </div>
               <div class="upload">
                 <div class='txt'>
                   <p><span class="n1">姓名</span><span class="n2" id='name'></span></p>
                   <p><span class="n1">编号</span><span class="n2" id="id"></span></p>
                 </div>
-                <button class="btn btn-primary okUpload" >确认上传</button>
+                <button class="btn btn-primary okUpload" >上传照片</button>
               </div>
           </div>
         </div>
     </div>
+    <!-- 底部菜单栏 -->
+    <div class="mode">
+        <div class="list_btn">
+            <button class="selectLoad">从相册选取</button>
+            <button class="pzUpload">拍照上传</button>
+            <button class="cancel">取消</button>
+        </div>
+    </div>
+    <div class="spinner-box">
+      <div class="configure-border-1">
+          <div class="configure-core"></div>
+      </div>
+      <div class="configure-border-2">
+          <div class="configure-core"></div>
+      </div>
+  </div>
 </body>
 <script src="./src/js/jquery.min.js"></script>
+<script src="./src/js/exif.min.js"></script>
 <script src="./src/js/index.js"></script>
 <script src='./src/js/md5.js'></script>
 </html>
