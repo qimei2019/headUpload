@@ -129,12 +129,12 @@ button:focus{
     cursor: pointer;
 }
 .okSHow{
-    margin: 40px auto;
+    margin: 20px auto;
     display: none;
     text-align: center;
-    height: 270px;
+    /* height: 270px; */
     font-size: 20px;
-    color: seagreen;
+    color: rgb(96, 184, 134);
 }
 .okSHow img{
     width: 180px;

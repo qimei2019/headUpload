@@ -25,7 +25,7 @@
             $('#name').html(obj.name);
             $('#id').html(obj.id);
     }
-    $('.imgShow').click(function(){
+    $('.okUpload').click(function(){
         if(!obj.name){
             msgFun('人员不存在')
             return;
@@ -53,6 +53,11 @@
     $('.cancel').click(function(){
         $('.mode').hide()
     })
+    $('.mode').click(function(e){
+        if(e.target.className=='mode'){
+            $(this).hide()
+        }
+    })
     var Orientation = null; 
     function upload(){
         $('#imgUpload').click();
@@ -77,29 +82,25 @@
                 msgFun('图片不能超过1M');
                 return;
             }
-            $('.see').hide();
-            $('#imgSel').show().attr('src',e.target.result);
             window.base64= e.target.result;
-            $('.uploadImg').attr('src',window.base64)
+            uploadStart()
         }
         let img64 = render.readAsDataURL(file.files[0]);
     })
      //上传
-     $('.okUpload').click(function(){
-        if(!window.base64){
-            msgFun('请上传图片')
-            return;
-         }
-         if(obj.id){
+     function uploadStart(){
+        if(obj.id){
             if(hex_md5(obj.id+'')!==obj.idCiphertext){
                 console.log(hex_md5(obj.id+''))
                 msgFun('人员编号错误');
+                $('.mode').hide();
                 return;
             }
          }else{
+            $('.mode').hide();
             msgFun('人员不存在');
             return;
-         }
+        }
         $('.spinner-box').css({'display':'flex'})
         $.ajax({
             method:'post',
@@ -115,24 +116,26 @@
             success(data){
                 $('.spinner-box').css({'display':'none'})
                 if(data.code==200){
+                    $('.mode').hide();
                     $('#imgSel').hide().attr('src','')
-                    $('.see').show();
-                    $('.okSHow').show();
-                    $('.imgShow').hide();
                     $('#imgUpload').val('');
+                    $('#imgSel').show().attr('src',window.base64);
+                    $('.uploadImg').attr('src',window.base64)
+                    $('.see').hide();
                     window.base64='';
-                    $('.okUpload').hide();
                     msgFun('上传成功',1)
                 }else{
+                    $('.mode').hide();
                     msgFun(data.msg)
                 }
             },
             error(){
+                $('.mode').hide();
                 $('.spinner-box').css({'display':'none'})
                 msgFun('系统错误')
             } 
         })
-    })
+     }
     //提示信息
     var timer=null;
     function msgFun(txt,state){
@@ -178,13 +181,10 @@
                     ctx.rotate(90 * Math.PI / 180); 
                     ctx.drawImage(img, -(canvas.height / 2), -(canvas.width / 2), canvas.height, canvas.width);
                 }
-                var compressRate = getCompressRate(0.8,fileSize);
+                var compressRate = getCompressRate(1,fileSize);
                     dataUrl = canvas.toDataURL( 'image/jpg', compressRate);
-                $('.mode').hide();
-                $('.see').hide();
-                $('#imgSel').show().attr('src',dataUrl);
-                window.base64= dataUrl;
-                $('.uploadImg').attr('src',window.base64)
+                    window.base64= dataUrl;
+                    uploadStart()
             }
         }
         function adjustImgOrientation (canvas,ctx, img, orientation, width, height) {
